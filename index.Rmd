@@ -8,7 +8,7 @@ site: "bookdown::bookdown_site"
 
 This is the introductory page to some of the initial survey results. 
 
-```{r setup, include = FALSE}
+```{r setup, include = FALSE, echo = FALSE}
 # bookdown::render_book('index.Rmd', 'bookdown::gitbook')
 
 rm(list=ls())
