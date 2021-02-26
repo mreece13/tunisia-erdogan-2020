@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Press Freedom | Introduction</title>
-  <meta name="description" content="Press Freedom | Introduction" />
+  <title>Introduction</title>
+  <meta name="description" content="Introduction" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Press Freedom | Introduction" />
+  <meta property="og:title" content="Introduction" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Press Freedom | Introduction" />
+  <meta name="twitter:title" content="Introduction" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
 
+<link rel="next" href="press-freedom.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -159,45 +159,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="press-freedom" class="section level1">
-<h1>Press Freedom</h1>
-<p>There are 1579 Non-NA responses to the Press Freedom question.</p>
-<div id="islamists" class="section level2">
-<h2>Islamists</h2>
-<div id="islamists-from-v19" class="section level3">
-<h3>Islamists from V19</h3>
-<p><img src="Tunisia-Erdogan-Study_files/figure-html/pf_i_v19-1.png" width="80%" /></p>
+<div id="header">
+<h1 class="title">Introduction</h1>
 </div>
-<div id="islamists-from-v25" class="section level3">
-<h3>Islamists from V25</h3>
-<p><img src="Tunisia-Erdogan-Study_files/figure-html/pf_i_v25-1.png" width="80%" /></p>
-</div>
-<div id="islamists-from-v27" class="section level3">
-<h3>Islamists from V27</h3>
-<p><img src="Tunisia-Erdogan-Study_files/figure-html/pf_i_v27-1.png" width="80%" /></p>
-</div>
-<div id="islamists-from-v15" class="section level3">
-<h3>Islamists from V15</h3>
-<p><img src="Tunisia-Erdogan-Study_files/figure-html/pf_i_v15-1.png" width="80%" /></p>
-</div>
-</div>
-<div id="democrats" class="section level2">
-<h2>Democrats</h2>
-<p><img src="Tunisia-Erdogan-Study_files/figure-html/pf_d_v24-1.png" width="80%" /></p>
-</div>
-<div id="anti-americans" class="section level2">
-<h2>Anti-Americans</h2>
-<p><img src="Tunisia-Erdogan-Study_files/figure-html/pf_aa_v26-1.png" width="80%" /></p>
+<div id="setup" class="section level1">
+<h1>Setup</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bookdown::render_book(&#39;index.Rmd&#39;, &#39;bookdown::gitbook&#39;)</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-4"><a href="index.html#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="index.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-6"><a href="index.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmdformats)</span>
+<span id="cb1-7"><a href="index.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-8"><a href="index.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
+<span id="cb1-9"><a href="index.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(htmltools)</span>
+<span id="cb1-10"><a href="index.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-11"><a href="index.html#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="index.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Automatically use showtext to render text for future devices</span></span>
+<span id="cb1-13"><a href="index.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb1-14"><a href="index.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="index.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Global options</span></span>
+<span id="cb1-16"><a href="index.html#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#options(max.print=&quot;75&quot;)</span></span>
+<span id="cb1-17"><a href="index.html#cb1-17" aria-hidden="true" tabindex="-1"></a>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo=</span><span class="cn">FALSE</span>,</span>
+<span id="cb1-18"><a href="index.html#cb1-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">cache=</span><span class="cn">TRUE</span>,</span>
+<span id="cb1-19"><a href="index.html#cb1-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">prompt=</span><span class="cn">FALSE</span>,</span>
+<span id="cb1-20"><a href="index.html#cb1-20" aria-hidden="true" tabindex="-1"></a>               <span class="at">tidy=</span><span class="cn">TRUE</span>,</span>
+<span id="cb1-21"><a href="index.html#cb1-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">comment=</span><span class="cn">NA</span>,</span>
+<span id="cb1-22"><a href="index.html#cb1-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">message=</span><span class="cn">FALSE</span>,</span>
+<span id="cb1-23"><a href="index.html#cb1-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">warning=</span><span class="cn">FALSE</span>,</span>
+<span id="cb1-24"><a href="index.html#cb1-24" aria-hidden="true" tabindex="-1"></a>               <span class="at">fig.width =</span> <span class="dv">6</span>,</span>
+<span id="cb1-25"><a href="index.html#cb1-25" aria-hidden="true" tabindex="-1"></a>               <span class="at">fig.asp =</span> <span class="fl">0.8</span>,</span>
+<span id="cb1-26"><a href="index.html#cb1-26" aria-hidden="true" tabindex="-1"></a>               <span class="at">fig.showtext=</span><span class="cn">TRUE</span>,</span>
+<span id="cb1-27"><a href="index.html#cb1-27" aria-hidden="true" tabindex="-1"></a>               <span class="at">out.width =</span> <span class="st">&quot;80%&quot;</span>)</span>
+<span id="cb1-28"><a href="index.html#cb1-28" aria-hidden="true" tabindex="-1"></a>opts_knit<span class="sc">$</span><span class="fu">set</span>(<span class="at">width=</span><span class="dv">75</span>)</span></code></pre></div>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
+<a href="press-freedom.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -3,7 +3,9 @@ title: "Introduction"
 site: "bookdown::bookdown_site"
 ---
 
-```{r setup, include=FALSE}
+# Setup
+
+```{r setup}
 # bookdown::render_book('index.Rmd', 'bookdown::gitbook')
 
 rm(list=ls())
@@ -35,7 +37,7 @@ opts_knit$set(width=75)
 
 ```
 
-```{r util, include=F}
+```{r util}
 
 GeomSplitViolin <- ggproto("GeomSplitViolin", GeomViolin, 
                            draw_group = function(self, data, ..., draw_quantiles = NULL) {
@@ -72,7 +74,7 @@ geom_split_violin <- function(mapping = NULL, data = NULL, stat = "ydensity", po
 
 ```
 
-```{r input, include=FALSE}
+```{r input}
 
 data <- read_csv("Data/Raw/Tunisia_Processed.csv") %>% 
   mutate(across(islamist_v19:democrat_v24, as.factor)) %>% 
