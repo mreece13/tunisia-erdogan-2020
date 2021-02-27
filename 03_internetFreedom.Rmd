@@ -1,21 +1,20 @@
-#  V20_1: Press Freedom
+# V20_3: Internet Freedom
 
-There are 1579 Non-NA responses to the Press Freedom question. 
+There are 1608 Non-NA responses to the Internet Freedom question (V20_3). 
 
 ## Islamists
 
 ### Islamists from V19
 
-```{r pf_i_v19}
+```{r}
 
 data %>% 
-  #mutate(across(starts_with("islamist_"), ~case_when(.x == 0 ~ "Non-Islamist", .x == 1 ~ "Islamist"))) %>%
   group_by(islamist_v19, prime) %>%
-  drop_na(press_freedom) %>% 
-  summarize(avg = mean(press_freedom), se = sd(press_freedom)/sqrt(length(press_freedom))) %>%
+  drop_na(internet_freedom) %>% 
+  summarize(avg = mean(internet_freedom), se = sd(internet_freedom)/sqrt(length(internet_freedom))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v19)) +
   geom_errorbar(position = position_dodge(width = 0.2), size=1) +
-  labs(x = "", y = "Press Freedom (0-1)", color = "Islamist? V19") +
+  labs(x = "", y = "Internet Freedom (0-1)", color = "Islamist? V19") +
   ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
@@ -35,16 +34,15 @@ data %>%
 
 ### Islamists from V25
 
-```{r pf_i_v25}
+```{r}
 
 data %>% 
-  #mutate(across(starts_with("islamist_"), ~case_when(.x == 0 ~ "Non-Islamist", .x == 1 ~ "Islamist"))) %>%
   group_by(islamist_v25, prime) %>%
-  drop_na(press_freedom) %>% 
-  summarize(avg = mean(press_freedom), se = sd(press_freedom)/sqrt(length(press_freedom))) %>%
+  drop_na(internet_freedom) %>% 
+  summarize(avg = mean(internet_freedom), se = sd(internet_freedom)/sqrt(length(internet_freedom))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v25)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
-  labs(x = "", y = "Press Freedom (0-1)", color = "Islamist? V25") +
+  labs(x = "", y = "Internet Freedom (0-1)", color = "Islamist? V25") +
   ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
@@ -65,16 +63,15 @@ data %>%
 
 ### Islamists from V27
 
-```{r pf_i_v27}
+```{r}
 
 data %>% 
-  #mutate(across(starts_with("islamist_"), ~case_when(.x == 0 ~ "Non-Islamist", .x == 1 ~ "Islamist"))) %>%
   group_by(islamist_v27, prime) %>%
-  drop_na(press_freedom) %>% 
-  summarize(avg = mean(press_freedom), se = sd(press_freedom)/sqrt(length(press_freedom))) %>%
+  drop_na(internet_freedom) %>% 
+  summarize(avg = mean(internet_freedom), se = sd(internet_freedom)/sqrt(length(internet_freedom))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v27)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
-  labs(x = "", y = "Press Freedom (0-1)", color = "Islamist? V27") +
+  labs(x = "", y = "Internet Freedom (0-1)", color = "Islamist? V27") +
   ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
@@ -95,16 +92,16 @@ data %>%
 
 ### Islamists from V15
 
-```{r pf_i_v15}
+```{r}
 
 data %>% 
   #mutate(across(starts_with("islamist_"), ~case_when(.x == 0 ~ "Non-Islamist", .x == 1 ~ "Islamist"))) %>%
   group_by(islamist_v15, prime) %>%
-  drop_na(press_freedom) %>% 
-  summarize(avg = mean(press_freedom), se = sd(press_freedom)/sqrt(length(press_freedom))) %>%
+  drop_na(internet_freedom) %>% 
+  summarize(avg = mean(internet_freedom), se = sd(internet_freedom)/sqrt(length(internet_freedom))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v15)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
-  labs(x = "", y = "Press Freedom (0-1)", color = "Islamist? V15") +
+  labs(x = "", y = "Internet Freedom (0-1)", color = "Islamist? V15") +
   ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
@@ -125,16 +122,15 @@ data %>%
 
 ## Democrats
 
-```{r pf_d_v24}
+```{r}
 
 data %>% 
-  #mutate(across(starts_with("democrat_"), ~case_when(.x == 0 ~ "Non-Democrat", .x == 1 ~ "Democrat"))) %>%
   group_by(democrat_v24, prime) %>%
-  drop_na(press_freedom) %>% 
-  summarize(avg = mean(press_freedom), se = sd(press_freedom)/sqrt(length(press_freedom))) %>%
+  drop_na(internet_freedom) %>% 
+  summarize(avg = mean(internet_freedom), se = sd(internet_freedom)/sqrt(length(internet_freedom))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = democrat_v24)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
-  labs(x = "", y = "Press Freedom (0-1)", color = "Democrat? V24") +
+  labs(x = "", y = "Internet Freedom (0-1)", color = "Democrat? V24") +
   ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Democrat", "1" = "Democrat"), 
@@ -155,16 +151,15 @@ data %>%
 
 ## Anti-Americans
 
-```{r pf_aa_v26}
+```{r}
 
 data %>% 
-  #mutate(across(starts_with("antiAmerican_"), ~case_when(.x == 0 ~ "Pro-American", .x == 1 ~ "Anti-American"))) %>%
   group_by(antiAmerican_v26, prime) %>%
-  drop_na(press_freedom) %>% 
-  summarize(avg = mean(press_freedom), se = sd(press_freedom)/sqrt(length(press_freedom))) %>%
+  drop_na(internet_freedom) %>% 
+  summarize(avg = mean(internet_freedom), se = sd(internet_freedom)/sqrt(length(internet_freedom))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = antiAmerican_v26)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
-  labs(x = "", y = "Press Freedom (0-1)", color = "Anti-American? V26") +
+  labs(x = "", y = "Internet Freedom (0-1)", color = "Anti-American? V26") +
   ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Pro-American", "1" = "Anti-American"), 
