@@ -1,0 +1,171 @@
+# Additive Index for V20_1 through V20_10
+
+## Islamists
+
+### Islamists from V19
+
+```{r}
+
+data %>% 
+  group_by(islamist_v19, prime) %>%
+  drop_na(additiveIndex) %>% 
+  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v19)) +
+  geom_errorbar(position = position_dodge(width = 0.2), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V19") +
+  scale_color_manual(
+    labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+```
+
+### Islamists from V25
+
+```{r}
+
+data %>% 
+  group_by(islamist_v25, prime) %>%
+  drop_na(additiveIndex) %>% 
+  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v25)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V25") +
+  scale_color_manual(
+    labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+### Islamists from V27
+
+```{r}
+
+data %>% 
+  group_by(islamist_v27, prime) %>%
+  drop_na(additiveIndex) %>% 
+  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v27)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V27") +
+  scale_color_manual(
+    labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+### Islamists from V15
+
+```{r}
+
+data %>% 
+  #mutate(across(starts_with("islamist_"), ~case_when(.x == 0 ~ "Non-Islamist", .x == 1 ~ "Islamist"))) %>%
+  group_by(islamist_v15, prime) %>%
+  drop_na(additiveIndex) %>% 
+  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v15)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V15") +
+  scale_color_manual(
+    labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+## Democrats
+
+```{r}
+
+data %>% 
+  group_by(democrat_v24, prime) %>%
+  drop_na(additiveIndex) %>% 
+  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = democrat_v24)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Democrat? V24") +
+  scale_color_manual(
+    labels = c("0" = "Non-Democrat", "1" = "Democrat"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+## Anti-Americans
+
+```{r}
+
+data %>% 
+  group_by(antiAmerican_v26, prime) %>%
+  drop_na(additiveIndex) %>% 
+  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = antiAmerican_v26)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Anti-American? V26") +
+  scale_color_manual(
+    labels = c("0" = "Pro-American", "1" = "Anti-American"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```

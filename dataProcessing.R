@@ -267,6 +267,7 @@ cleaned <- raw %>%
                                 .default=NA_real_
   )) %>% 
   mutate(across(press_freedom:change_system, ~ scales::rescale(.x, to=c(0,1)))) %>% 
+  mutate(additiveIndex = rowSums(across(press_freedom:change_system), na.rm=T)) %>% 
   mutate(trust_erdogan = case_when(
     V162_2 == "Do not trust at all" ~ 1,
     V162_2 == "Only a little" ~ 2,
