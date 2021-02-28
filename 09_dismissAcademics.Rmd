@@ -15,7 +15,6 @@ data %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v19)) +
   geom_errorbar(position = position_dodge(width = 0.2), size=1) +
   labs(x = "", y = "Dismiss Academics (0-1)", color = "Islamist? V19") +
-  ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
     values = c("#008FB3", "#F36E21")) +
@@ -43,7 +42,6 @@ data %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v25)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Dismiss Academics (0-1)", color = "Islamist? V25") +
-  ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
     values = c("#008FB3", "#F36E21")) +
@@ -72,7 +70,6 @@ data %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v27)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Dismiss Academics (0-1)", color = "Islamist? V27") +
-  ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
     values = c("#008FB3", "#F36E21")) +
@@ -95,14 +92,12 @@ data %>%
 ```{r}
 
 data %>% 
-  #mutate(across(starts_with("islamist_"), ~case_when(.x == 0 ~ "Non-Islamist", .x == 1 ~ "Islamist"))) %>%
   group_by(islamist_v15, prime) %>%
   drop_na(dismiss_academics) %>% 
   summarize(avg = mean(dismiss_academics), se = sd(dismiss_academics)/sqrt(length(dismiss_academics))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v15)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Dismiss Academics (0-1)", color = "Islamist? V15") +
-  ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Islamist", "1" = "Islamist"), 
     values = c("#008FB3", "#F36E21")) +
@@ -131,7 +126,6 @@ data %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = democrat_v24)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Dismiss Academics (0-1)", color = "Democrat? V24") +
-  ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Non-Democrat", "1" = "Democrat"), 
     values = c("#008FB3", "#F36E21")) +
@@ -160,7 +154,6 @@ data %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = antiAmerican_v26)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Dismiss Academics (0-1)", color = "Anti-American? V26") +
-  ylim(c(0, 1)) +
   scale_color_manual(
     labels = c("0" = "Pro-American", "1" = "Anti-American"), 
     values = c("#008FB3", "#F36E21")) +
