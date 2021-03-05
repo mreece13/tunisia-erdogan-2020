@@ -8,8 +8,8 @@
 
 data %>% 
   group_by(islamist_v19, prime) %>%
-  drop_na(additiveIndex) %>% 
-  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  drop_na(index_scaled) %>% 
+  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v19)) +
   geom_errorbar(position = position_dodge(width = 0.2), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V19") +
@@ -35,8 +35,8 @@ data %>%
 
 data %>% 
   group_by(islamist_v25, prime) %>%
-  drop_na(additiveIndex) %>% 
-  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  drop_na(index_scaled) %>% 
+  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v25)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V25") +
@@ -63,8 +63,8 @@ data %>%
 
 data %>% 
   group_by(islamist_v27, prime) %>%
-  drop_na(additiveIndex) %>% 
-  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  drop_na(index_scaled) %>% 
+  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v27)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V27") +
@@ -91,8 +91,8 @@ data %>%
 
 data %>% 
   group_by(democrat_v24, prime) %>%
-  drop_na(additiveIndex) %>% 
-  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  drop_na(index_scaled) %>% 
+  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = democrat_v24)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Democrat? V24") +
@@ -119,8 +119,8 @@ data %>%
 
 data %>% 
   group_by(antiAmerican_v26, prime) %>%
-  drop_na(additiveIndex) %>% 
-  summarize(avg = mean(additiveIndex), se = sd(additiveIndex)/sqrt(length(additiveIndex))) %>%
+  drop_na(index_scaled) %>% 
+  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = antiAmerican_v26)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Anti-American? V26") +
