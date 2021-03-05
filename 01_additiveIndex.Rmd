@@ -9,7 +9,7 @@
 data %>% 
   group_by(islamist_v19, prime) %>%
   drop_na(index_scaled) %>% 
-  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v19)) +
   geom_errorbar(position = position_dodge(width = 0.2), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V19") +
@@ -25,7 +25,10 @@ data %>%
         plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
         legend.background = element_rect(fill = "transparent"), # get rid of legend bg
         legend.box.background = element_rect(fill = "transparent")) +
-  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+  scale_y_continuous(
+    expand = c(0, 0), 
+    limits = c(0, 10)
+    )
 
 ```
 
@@ -33,10 +36,11 @@ data %>%
 
 ```{r}
 
-data %>% 
+data %>%
+  mutate(prime = fct_relevel(prime, "Prime 1", "Prime 2", "Prime 3")) %>% 
   group_by(islamist_v25, prime) %>%
   drop_na(index_scaled) %>% 
-  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v25)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V25") +
@@ -54,7 +58,6 @@ data %>%
         legend.box.background = element_rect(fill = "transparent")) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
 
-
 ```
 
 ### Islamists from V27
@@ -64,7 +67,7 @@ data %>%
 data %>% 
   group_by(islamist_v27, prime) %>%
   drop_na(index_scaled) %>% 
-  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v27)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Islamist? V27") +
@@ -92,7 +95,7 @@ data %>%
 data %>% 
   group_by(democrat_v24, prime) %>%
   drop_na(index_scaled) %>% 
-  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = democrat_v24)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Democrat? V24") +
@@ -120,13 +123,92 @@ data %>%
 data %>% 
   group_by(antiAmerican_v26, prime) %>%
   drop_na(index_scaled) %>% 
-  summarize(avg = mean(index_scaled), se = sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = antiAmerican_v26)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
   labs(x = "", y = "Additive Index (0-10)", color = "Anti-American? V26") +
   scale_color_manual(
     labels = c("0" = "Pro-American", "1" = "Anti-American"), 
     values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+## Left
+
+```{r}
+
+data %>% 
+  mutate(left_v19 = as.factor(left_v19)) %>% 
+  group_by(left_v19, prime) %>%
+  drop_na(index_scaled) %>% 
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = left_v19)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "Left? V19") +
+  scale_color_manual(
+    labels = c("0" = "Non-Left", "1" = "Left"), 
+    values = c("#008FB3", "#F36E21")) +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+## Religious Knowledge (same variable as relknow)
+
+```{r}
+
+data %>% 
+  drop_na(index_scaled, religious_knowledge) %>% 
+  ggplot(aes(x = religious_knowledge, y = index_scaled, color=prime)) + 
+  geom_point() +
+  geom_smooth(method="lm") +
+  labs(x = "Religious Knowledge (0-20)", y = "Additive Index (0-10)") +
+  theme(text = element_text(size=15, family = "Lato", color = "black"), 
+        plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),
+        axis.line = element_line(colour = "black"),
+        panel.background = element_rect(fill = "transparent"), # bg of the panel
+        panel.grid.major.y = element_line(color = "lightgrey"),
+        plot.background = element_rect(fill = "transparent", color = NA), # bg of the plot
+        legend.background = element_rect(fill = "transparent"), # get rid of legend bg
+        legend.box.background = element_rect(fill = "transparent")) +
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 10))
+
+
+```
+
+## V6_3
+
+```{r}
+
+data %>% 
+  mutate(ennahada_V6_3 = as.factor(ennahada_V6_3)) %>% 
+  group_by(ennahada_V6_3, prime) %>%
+  drop_na(index_scaled, ennahada_V6_3) %>% 
+  summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
+  ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = ennahada_V6_3)) + 
+  geom_errorbar(position = position_dodge(width = 0.4), size=1) +
+  labs(x = "", y = "Additive Index (0-10)", color = "V6_3") +
   theme(text = element_text(size=15, family = "Lato", color = "black"), 
         plot.title = element_text(hjust = 0.5, margin = margin(t = 0, r = 0, b = 20, l = 0)),
         axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5, color = "black"),

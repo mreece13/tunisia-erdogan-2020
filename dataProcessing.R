@@ -29,20 +29,20 @@ cleaned <- raw %>%
   mutate(islamist_v25 = case_when(
     V25 == "Support" ~ 1,
     V25 == "Strongly support" ~ 1,
-    !is.na(V25) ~ 0,
-    TRUE ~ NA_real_
+    V25 == "Don’t know" ~ NA_real_,
+    TRUE ~ 0
   )) %>% 
   mutate(islamist_v27 = case_when(
     V27 == "Moderate influence" ~ 1,
     V27 == "Major influence" ~ 1,
-    !is.na(V27) ~ 0,
-    TRUE ~ NA_real_
+    V27 == "Don’t know" ~ NA_real_,
+    TRUE ~ 0
   )) %>% 
   mutate(democrat_v24 = case_when(
     V24 == "Agree" ~ 1,
     V24 == "Strongly Agree" ~ 1,
-    !is.na(V24) ~ 0,
-    TRUE ~ NA_real_
+    V24 == "Don’t know" ~ NA_real_,
+    TRUE ~ 0
   )) %>% 
   mutate(democrat_v24_numeric = case_when(
     V24 == "Strongly Agree" ~ 5,
@@ -55,8 +55,8 @@ cleaned <- raw %>%
   mutate(antiAmerican_v26 = case_when(
     V26 == "Strongly disapprove" ~ 1,
     V26 == "Disapprove" ~ 1,
-    !is.na(V26) ~ 0,
-    TRUE ~ NA_real_
+    V26 == "Don’t know" ~ NA_real_,
+    TRUE ~ 0
   )) %>% 
   mutate(islamist_v15 = as.numeric(V15 == "There is only one, true understanding of Shariah")) %>% 
   mutate(across(c(V1_1, V1_2, V1_5, V2_1, V2_2, V2_4), ~as.numeric(.x == "Yes"))) %>% 
@@ -192,7 +192,7 @@ cleaned <- raw %>%
                                 "Neither justified nor justified" = 3,
                                 "Justified" = 2,
                                 "Completely justified" = 1,
-                                .default=NA_real_
+                                "Don't know" = NA_real_
                                 )) %>% 
   mutate(imprison_journalists = recode(V20_2,
                                        "Not justified at all" = 5,
@@ -200,7 +200,7 @@ cleaned <- raw %>%
                                        "Neither justified nor justified" = 3,
                                        "Justified" = 2,
                                        "Completely justified" = 1,
-                                       .default=NA_real_
+                                       "Don't know" = NA_real_
   )) %>% 
   mutate(internet_freedom = recode(V20_3,
                                    "Not justified at all" = 5,
@@ -208,7 +208,7 @@ cleaned <- raw %>%
                                    "Neither justified nor justified" = 3,
                                    "Justified" = 2,
                                    "Completely justified" = 1,
-                                   .default=NA_real_
+                                   "Don't know" = NA_real_
   )) %>% 
   mutate(jail_opposition = recode(V20_4,
                                   "Not justified at all" = 5,
@@ -216,7 +216,7 @@ cleaned <- raw %>%
                                   "Neither justified nor justified" = 3,
                                   "Justified" = 2,
                                   "Completely justified" = 1,
-                                  .default=NA_real_
+                                  "Don't know" = NA_real_
   )) %>% 
   mutate(imprison_civilians = recode(V20_5,
                                      "Not justified at all" = 5,
@@ -224,7 +224,7 @@ cleaned <- raw %>%
                                      "Neither justified nor justified" = 3,
                                      "Justified" = 2,
                                      "Completely justified" = 1,
-                                     .default=NA_real_
+                                     "Don't know" = NA_real_
   )) %>% 
   mutate(dismiss_civilians = recode(V20_6,
                                     "Not justified at all" = 5,
@@ -232,7 +232,7 @@ cleaned <- raw %>%
                                     "Neither justified nor justified" = 3,
                                     "Justified" = 2,
                                     "Completely justified" = 1,
-                                    .default=NA_real_
+                                    "Don't know" = NA_real_
   )) %>% 
   mutate(dismiss_generals = recode(V20_7,
                                    "Not justified at all" = 5,
@@ -240,7 +240,7 @@ cleaned <- raw %>%
                                    "Neither justified nor justified" = 3,
                                    "Justified" = 2,
                                    "Completely justified" = 1,
-                                   .default=NA_real_
+                                   "Don't know" = NA_real_
   )) %>% 
   mutate(dismiss_judges = recode(V20_8,
                                  "Not justified at all" = 5,
@@ -248,7 +248,7 @@ cleaned <- raw %>%
                                  "Neither justified nor justified" = 3,
                                  "Justified" = 2,
                                  "Completely justified" = 1,
-                                 .default=NA_real_
+                                 "Don't know" = NA_real_
   )) %>% 
   mutate(dismiss_academics = recode(V20_9,
                                     "Not justified at all" = 5,
@@ -256,7 +256,7 @@ cleaned <- raw %>%
                                     "Neither justified nor justified" = 3,
                                     "Justified" = 2,
                                     "Completely justified" = 1,
-                                    .default=NA_real_
+                                    "Don't know" = NA_real_
   )) %>% 
   mutate(change_system = recode(V20_10,
                                 "Not justified at all" = 5,
@@ -264,11 +264,11 @@ cleaned <- raw %>%
                                 "Neither justified nor justified" = 3,
                                 "Justified" = 2,
                                 "Completely justified" = 1,
-                                .default=NA_real_
+                                "Don't know" = NA_real_
   )) %>% 
-  mutate(index_unscaled = rowSums(across(press_freedom:change_system), na.rm=T)) %>% 
+  mutate(index_unscaled = rowSums(across(press_freedom:change_system))) %>% 
   mutate(across(press_freedom:change_system, ~ scales::rescale(.x, to=c(0,1)))) %>% 
-  mutate(index_scaled = rowSums(across(press_freedom:change_system), na.rm=T)) %>% 
+  mutate(index_scaled = rowSums(across(press_freedom:change_system))) %>% 
   mutate(trust_erdogan = case_when(
     V162_2 == "Do not trust at all" ~ 1,
     V162_2 == "Only a little" ~ 2,
@@ -353,7 +353,22 @@ cleaned <- raw %>%
   mutate(approval_iyadh = as.numeric(V121_8 == "Yes" | V122_9 == "Yes")) %>%
   mutate(approval_nasrallah = as.numeric(V121_2 == "Yes" | V122_5 == "Yes")) %>%
   mutate(approval_ellouze = as.numeric(V121_12 == "Yes" | V122_13 == "Yes")) %>%
-  mutate(approval_baghdadi = as.numeric(V122_6 == "Yes"))
+  mutate(approval_baghdadi = as.numeric(V122_6 == "Yes")) %>% 
+  mutate(left_v19 = case_when(
+    V19 == "Liberal" ~ 1,
+    V19 == "Arab socialist" ~ 1,
+    V19 == "Socialist" ~ 1,
+    V19 == "Social democrat" ~ 1,
+    TRUE ~ 0
+  )) %>% 
+  mutate(ennahada_V6_3 = case_when(
+    V6_3 == "Don't Know" ~ NA_real_,
+    V6_3 == "Refuse to answer" ~ NA_real_,
+    V6_3 == "Do not agree at all" ~ 1,
+    V6_3 == "Do not agree" ~ 2,
+    V6_3 == "Agree" ~ 3,
+    V6_3 == "Agree completely" ~ 4
+  ))
 
 cleaned %>% 
   select(-starts_with("V"), -starts_with("TV")) %>% 
