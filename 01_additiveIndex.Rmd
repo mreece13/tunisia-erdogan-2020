@@ -37,6 +37,7 @@ data %>%
 ```{r}
 
 data %>%
+  drop_na(islamist_v25) %>% 
   mutate(prime = fct_relevel(prime, "Prime 1", "Prime 2", "Prime 3")) %>% 
   group_by(islamist_v25, prime) %>%
   drop_na(index_scaled) %>% 
@@ -66,7 +67,7 @@ data %>%
 
 data %>% 
   group_by(islamist_v27, prime) %>%
-  drop_na(index_scaled) %>% 
+  drop_na(index_scaled, islamist_v27) %>% 
   summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = islamist_v27)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
@@ -94,7 +95,7 @@ data %>%
 
 data %>% 
   group_by(democrat_v24, prime) %>%
-  drop_na(index_scaled) %>% 
+  drop_na(index_scaled, democrat_v24) %>% 
   summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = democrat_v24)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
@@ -122,7 +123,7 @@ data %>%
 
 data %>% 
   group_by(antiAmerican_v26, prime) %>%
-  drop_na(index_scaled) %>% 
+  drop_na(index_scaled, antiAmerican_v26) %>% 
   summarize(avg = mean(index_scaled), se = 1.96*sd(index_scaled)/sqrt(length(index_scaled))) %>%
   ggplot(aes(x = prime, y = avg, ymin = avg - se, ymax = avg + se, color = antiAmerican_v26)) + 
   geom_errorbar(position = position_dodge(width = 0.4), size=1) +
