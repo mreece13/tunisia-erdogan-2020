@@ -188,85 +188,86 @@ cleaned <- raw %>%
   mutate(prime = V521) %>% 
   mutate(press_freedom = recode(V20_1,
                                 "Not justified at all" = 5,
-                                "Neither justified nor justified" = 4,
-                                "Somewhat justified" = 3,
+                                "Somewhat justified" = 4,
+                                "Neither justified nor justified" = 3,
                                 "Justified" = 2,
                                 "Completely justified" = 1,
                                 .default=NA_real_
                                 )) %>% 
   mutate(imprison_journalists = recode(V20_2,
                                        "Not justified at all" = 5,
-                                       "Neither justified nor justified" = 4,
-                                       "Somewhat justified" = 3,
+                                       "Somewhat justified" = 4,
+                                       "Neither justified nor justified" = 3,
                                        "Justified" = 2,
                                        "Completely justified" = 1,
                                        .default=NA_real_
   )) %>% 
   mutate(internet_freedom = recode(V20_3,
                                    "Not justified at all" = 5,
-                                   "Neither justified nor justified" = 4,
-                                   "Somewhat justified" = 3,
+                                   "Somewhat justified" = 4,
+                                   "Neither justified nor justified" = 3,
                                    "Justified" = 2,
                                    "Completely justified" = 1,
                                    .default=NA_real_
   )) %>% 
   mutate(jail_opposition = recode(V20_4,
                                   "Not justified at all" = 5,
-                                  "Neither justified nor justified" = 4,
-                                  "Somewhat justified" = 3,
+                                  "Somewhat justified" = 4,
+                                  "Neither justified nor justified" = 3,
                                   "Justified" = 2,
                                   "Completely justified" = 1,
                                   .default=NA_real_
   )) %>% 
   mutate(imprison_civilians = recode(V20_5,
                                      "Not justified at all" = 5,
-                                     "Neither justified nor justified" = 4,
-                                     "Somewhat justified" = 3,
+                                     "Somewhat justified" = 4,
+                                     "Neither justified nor justified" = 3,
                                      "Justified" = 2,
                                      "Completely justified" = 1,
                                      .default=NA_real_
   )) %>% 
   mutate(dismiss_civilians = recode(V20_6,
                                     "Not justified at all" = 5,
-                                    "Neither justified nor justified" = 4,
-                                    "Somewhat justified" = 3,
+                                    "Somewhat justified" = 4,
+                                    "Neither justified nor justified" = 3,
                                     "Justified" = 2,
                                     "Completely justified" = 1,
                                     .default=NA_real_
   )) %>% 
   mutate(dismiss_generals = recode(V20_7,
                                    "Not justified at all" = 5,
-                                   "Neither justified nor justified" = 4,
-                                   "Somewhat justified" = 3,
+                                   "Somewhat justified" = 4,
+                                   "Neither justified nor justified" = 3,
                                    "Justified" = 2,
                                    "Completely justified" = 1,
                                    .default=NA_real_
   )) %>% 
   mutate(dismiss_judges = recode(V20_8,
                                  "Not justified at all" = 5,
-                                 "Neither justified nor justified" = 4,
-                                 "Somewhat justified" = 3,
+                                 "Somewhat justified" = 4,
+                                 "Neither justified nor justified" = 3,
                                  "Justified" = 2,
                                  "Completely justified" = 1,
                                  .default=NA_real_
   )) %>% 
   mutate(dismiss_academics = recode(V20_9,
                                     "Not justified at all" = 5,
-                                    "Neither justified nor justified" = 4,
-                                    "Somewhat justified" = 3,
+                                    "Somewhat justified" = 4,
+                                    "Neither justified nor justified" = 3,
                                     "Justified" = 2,
                                     "Completely justified" = 1,
                                     .default=NA_real_
   )) %>% 
   mutate(change_system = recode(V20_10,
                                 "Not justified at all" = 5,
-                                "Neither justified nor justified" = 4,
-                                "Somewhat justified" = 3,
+                                "Somewhat justified" = 4,
+                                "Neither justified nor justified" = 3,
                                 "Justified" = 2,
                                 "Completely justified" = 1,
                                 .default=NA_real_
   )) %>% 
-  mutate(across(press_freedom:change_system, ~ scales::rescale(.x, to=c(0,1)))) %>% 
+  #mutate(index = press_freedom)
+  #mutate(across(press_freedom:change_system, ~ scales::rescale(.x, to=c(0,1)))) %>% 
   mutate(additiveIndex = rowSums(across(press_freedom:change_system), na.rm=T)) %>% 
   mutate(trust_erdogan = case_when(
     V162_2 == "Do not trust at all" ~ 1,
